@@ -1,0 +1,77 @@
+.first{
+	width:40%;
+	margin-top: 100px;
+	margin-left: 420px;
+	padding-bottom: 30px;
+	padding-top: 20px;
+	/*position:absolute;*/
+}
+.second{
+	margin-top: 80px;
+	margin-left: 90px;
+	padding-bottom: 20px;
+	padding-top: 20px;
+}
+.third{
+	width:40%;
+	margin-top: 50px;
+	margin-left: 420px;
+	padding-bottom: 80px;
+	padding-top: 20px;
+}
+.fourth{
+	width:40%;
+	margin-top: 50px;
+	margin-left: 420px;
+	padding-bottom: 80px;
+	padding-top: 20px;
+}
+.final{
+	margin-top: 50px;
+	padding-top: 20px;
+	padding-bottom: 80px;
+	/*font-family: 'Opensans', sans-serif; */
+}
+.final input{
+	font-size: 1.3125em;
+	font-family: 'Opensans', sans-serif;
+}
+.final textarea{
+	font-size: 1.1100em;
+	font-family: 'Opensans', sans-serif;
+}
+.final label{
+	padding-top: 5px;
+}
+#division{
+	padding-top: 20px;
+}
+
+#address{
+	padding: 20px 0px 40px 20px;
+	border-radius: 5px 5px 5px 5px;
+}
+
+#save1{
+	margin-top: 20px;
+	margin-left: 450px;
+	
+	/*margin-top: 300px;*/
+}
+#save2{
+	margin-top: 20px;
+	margin-left: 450px;
+	/*margin-top: 300px;*/
+}
+
+.form-group input[type=text]:focus {
+	background: #F1EBEB;
+	color: #0C0B0B;
+    font-size: 1.3125em;
+    font-weight: 30;
+    font-family: 'Open Sans', sans serif;
+}
+.second .form-group input[type=text] {
+	width:80%;
+	margin-left: 0px;
+}

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Final Page</title>
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<script type="text/javascript">
+	window.onload = function() {
+		$(':input').attr('readonly', 'readonly');
+		$(':text').prop('readonly', true);
+		$.ajax({
+			type:'GET',
+			url:'/Namedetails/',
+			success:function(newdata){
+				var least = newdata[newdata.length-1];
+				document.getElementById('firstname').value= least.firstname;
+				document.getElementById('lastname').value= least.lastname;
+				document.getElementById('fathername').value= least.fathername;
+				document.getElementById('mothername').value= least.mothername;
+			}
+		});
+		$.ajax({
+			type:'GET',
+			url:'/Address/',
+			success:function(newdata){
+				var least = newdata[newdata.length-1];
+				document.getElementById('present').value += least.street1+" ,"+("\n")+least.street2+" ,"+("\n")+least.city+" ,"+("\n")+least.zip; 
+				document.getElementById('permanent').value += least.pstreet1+" ,"+("\n")+least.pstreet2+" ,"+("\n")+least.pcity+" ,"+("\n")+least.pzip; 
+			}
+		});
+ 		var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for(var i = 0; i < hashes.length; i++){
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+          	}
+        var number=vars["var1"];
+        var number2=vars["var2"];
+        
+        	$.ajax({
+			type:'GET',
+			url:'/Education/',
+			success:function(newdata){
+				var least = {};
+				least=newdata[newdata.length-1];
+				for (i=0;i<number;i++){
+            		document.getElementById('new').innerHTML=document.getElementById('new').innerHTML+'<div class="col-sm-12" id="division">'+
+                '<div class="col-sm-3">'+
+                '<label for="first_'+i+'">Qualification'+(i+1)+'</label>'+
+                '</div>'+'<div class="col-sm-3"><input type="text" class="form-control" id="exam_'+i+'"'+
+                'style="width:100%" value='+least.qualification[i].typeofexam+' readonly/></div><div class="col-sm-3"><input type="text" class="form-control" id="board_'+i+'"'+
+                'style="width:100%" value='+least.qualification[i].board+' readonly/></div><div class="col-sm-3"><input type="text" class="form-control" id="percent_'+i+'"'+
+                'style="width:100%" value='+least.qualification[i].percent+' readonly/></div>	</div></br>';   
+            }
+			}
+		});
+        
+        $.ajax({
+        	type:"GET",
+        	url:"/Experience/",
+        	success:function(newdata){
+        		var least = {};
+				least=newdata[newdata.length-1];
+        		for (i2=0;i2<number2;i2++){
+            		document.getElementById('new2').innerHTML=document.getElementById('new2').innerHTML+'<div class="col-sm-12" id="division">'+
+                '<div class="col-sm-3">'+
+                '<label for="second_'+i2+'">Experience'+(i2+1)+'</label>'+
+                '</div>'+'<div class="col-sm-3"><input type="text" class="form-control" id="company_'+i2+'"'+
+                'style="width:100%" value='+least.companies[i2].company+' readonly/></div><div class="col-sm-3"><input type="text" class="form-control" id="years_'+i2+'"'+
+                'style="width:100%" value='+least.companies[i2].years+' readonly/></div>	</div>';
+            }
+        	}
+
+        });
+
+		};
+	</script>
+</head>
+<body style="background:rgba(5,34,247,0.1);"  id="ip">
+	<div class="container final" style="background:rgba(5,34,247,0.1);border-radius: 5px 5px 5px 5px;" id="display">
+		<form role="form" id="end">
+			<div class="col-sm-12" id="division">
+				<div class="col-sm-1">
+					<label for="firstname">FirstName</label>
+				</div>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="firstname" style="width:100%" />
+				</div>
+				<div class="col-sm-1">
+					<label for="lastname">LastName</label>
+				</div>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="lastname" style="width:100%" />
+				</div>
+			</div>
+			<div class="col-sm-12" id="division">
+				<div class="col-sm-2">
+					<label for="fathername">FatherName</label>
+				</div>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="fathername" style="width:50%" />
+				</div>
+			</div>
+			<div class="col-sm-12" id="division">
+				<div class="col-sm-2">
+					<label for="mothername">MotherName</label>
+				</div>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="mothername" style="width:50%" />
+				</div>
+			</div>
+			<div class="col-sm-12" id="division">
+				<div class="col-sm-2">
+					<label for="present">Present Address</label>
+				</div>
+				<div class="col-sm-10">
+					<textarea class="form-control" id="present" style="overflow:hidden;width:50%;height:90px;" > </textarea>
+				</div>
+			</div>
+			<div class="col-sm-12" id="division">
+				<div class="col-sm-2">
+					<label for="permanent">Permanent Address</label>
+				</div>
+				<div class="col-sm-10">
+					<textarea class="form-control" id="permanent" style="overflow:hidden;width:50%;height:90px"></textarea>
+				</div>
+			</div>
+			<div id="new"></div>
+			<div id="new2"></div>
+			<div id="edit" style="margin: 100px 0px 0px 970px;">
+				<button class="btn btn-primary" id="editing" ><span class="glyphicon glyphicon-edit"></span>Edit</button> 
+		</form>
+	</div>
+</body>
+<script src="includes/js/jquery-1.8.2.min.js"></script>
+<script src="js/custom.js">
+	</script>
+<script src="js/jquery-scroll-to/lib/jquery-scrollto.js"></script>
+<script src="includes/js/modernizr-2.6.2.min.js"></script>
+</html>
